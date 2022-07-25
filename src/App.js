@@ -2,7 +2,7 @@ import React from 'react';
 import Constructor from './components/constructor';
 import NavBar from './components/NavBar';
 import ResultBar from './components/ResultBar';
-import ToolBar from './components/ToolBar';
+import ToolBar from './components/toolbar';
 import { Stack } from '@mui/material';
 
 function App() {

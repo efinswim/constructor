@@ -10,11 +10,17 @@ function Constructor() {
     <Box
       flex={3}
       p={2}
-      sx={{ bgcolor: '#F5F5FC', display: 'flex', justifyContent: 'center', flexDirection: 'column', margin: '10px'}}>
-      <ConstructorButtonTool />
+      sx={{
+        height: '660px',
+        bgcolor: '#F5F5FC',
+        display: 'flex',
+        flexDirection: 'column',
+        margin: '10px',
+      }}>
+      {/* <ConstructorButtonTool />
       <ConstructorHeadlineTool />
       <ConstructorImageTool />
-      <ConstructorParagraphTool />
+      <ConstructorParagraphTool /> */}
     </Box>
   );
 }
