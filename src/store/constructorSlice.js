@@ -25,8 +25,46 @@ const constructorSlice = createSlice({
         state.paragraph++;
       }
     },
-    removeElement(state, action) {},
-    copyElement(state, action) {},
+    removeElement(state, action) {
+      if (action.payload === 'button') {
+        if (state.button === 0) {
+          state.button = 0;
+        }
+        state.button--;
+      }
+      if (action.payload === 'headline') {
+        if (state.headline === 0) {
+          state.headline = 0;
+        }
+        state.headline--;
+      }
+      if (action.payload === 'image') {
+        if (state.image === 0) {
+          state.image = 0;
+        }
+        state.image--;
+      }
+      if (action.payload === 'paragraph') {
+        if (state.paragraph) {
+          state.paragraph = 0;
+        }
+        state.paragraph--;
+      }
+    },
+    copyElement(state, action) {
+      if (action.payload === 'button') {
+        state.button++;
+      }
+      if (action.payload === 'headline') {
+        state.headline++;
+      }
+      if (action.payload === 'image') {
+        state.image++;
+      }
+      if (action.payload === 'paragraph') {
+        state.paragraph++;
+      }
+    },
   },
 });
 

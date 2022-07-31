@@ -1,7 +1,7 @@
 import React from 'react';
 import Constructor from './components/constructor';
 import NavBar from './components/NavBar';
-import ResultBar from './components/ResultBar';
+import ResultBar from './components/resultbar';
 import ToolBar from './components/toolbar';
 import { Stack } from '@mui/material';
 

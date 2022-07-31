@@ -1,11 +1,13 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import ConstructorButtonTool from './ConstructorButtonTool';
-import ConstructorHeadlineTool from './ConstructorHeadlineTool';
-import ConstructorImageTool from './ConstructorImageTool';
-import ConstructorParagraphTool from './ConstructorParagraphTool';
+
+import ConstructorTool from './ConstructorTool';
+
+import { useSelector } from 'react-redux';
 
 function Constructor() {
+  const items = useSelector(state => state.constructorTools)
+
   return (
     <Box
       flex={3}
@@ -17,10 +19,18 @@ function Constructor() {
         flexDirection: 'column',
         margin: '10px',
       }}>
-      {/* <ConstructorButtonTool />
-      <ConstructorHeadlineTool />
-      <ConstructorImageTool />
-      <ConstructorParagraphTool /> */}
+        {
+          Array.from({length: items.button}, (item, index) => <ConstructorTool index={index + 1} type='button' />)
+        }
+        {
+          Array.from({length: items.headline}, (item, index) => <ConstructorTool index={index + 1} type='headline' />)
+        }
+        {
+          Array.from({length: items.image}, (item, index) => <ConstructorTool index={index + 1} type='image' />)
+        }
+        {
+          Array.from({length: items.paragraph}, (item, index) => <ConstructorTool index={index + 1} type='paragraph' />)
+        }
     </Box>
   );
 }

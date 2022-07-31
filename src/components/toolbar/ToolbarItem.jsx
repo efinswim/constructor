@@ -1,6 +1,5 @@
 import { ListItem, ListItemText, Paper } from '@mui/material';
 import React from 'react';
-import Draggable from 'react-draggable';
 import { useDispatch } from 'react-redux';
 
 import ParagraphToolImg from '@mui/icons-material/ShortTextRounded';
@@ -11,14 +10,9 @@ import { addNewElement } from '../../store/constructorSlice';
 function ToolbarItem({ type }) {
   const dispatch = useDispatch();
 
-  const handleAddElement = (event) => {
-    if (event.x > 200) {
-      dispatch(addNewElement(type));
-    }
-  };
+  const handleAddElement = () => dispatch(addNewElement(type));
 
   return (
-    <Draggable bounds={{ left: 0, top: 0, right: 450, bottom: 660 }} onStop={handleAddElement}>
       <Paper
         sx={{
           backgroundColor: '#F6F9FE',
@@ -28,7 +22,9 @@ function ToolbarItem({ type }) {
           height: '100px',
           position: 'relative',
           margin: '10px',
-        }}>
+          cursor: 'pointer'
+        }}
+        onClick={handleAddElement}>
         <ListItem
           sx={{
             display: 'flex',
@@ -45,7 +41,6 @@ function ToolbarItem({ type }) {
           <ListItemText primary={type} />
         </ListItem>
       </Paper>
-    </Draggable>
   );
 }
 
