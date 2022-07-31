@@ -24,7 +24,7 @@ function ConstructorTool({ type }) {
         sx={{
           width: '560px',
           height: '150px',
-          bgcolor: 'white',
+          bgcolor: '#F5F5FC',
           display: 'flex',
           justifyContent: 'center',
           flexDirection: 'column',

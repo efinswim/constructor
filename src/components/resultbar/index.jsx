@@ -36,18 +36,18 @@ function ResultBar() {
 
   return (
     <Box flex={3} p={2}>
-      <Box position="fixed" width={300}>
+      <Box width={300} sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
         {
-          Array.from({length: items.button}, (item, index) => <ButtonResult index={index + 1} type='button' />)
+          Array.from({length: items.button}, (item, index) => <ButtonResult key={index + 1} type='button' />)
         }
         {
-          Array.from({length: items.headline}, (item, index) => <HeadlineResult index={index + 1} type='headline' />)
+          Array.from({length: items.headline}, (item, index) => <HeadlineResult key={index + 1} type='headline' />)
         }
         {
-          Array.from({length: items.image}, (item, index) => <ImageResult index={index + 1} type='image' />)
+          Array.from({length: items.image}, (item, index) => <ImageResult key={index + 1} type='image' />)
         }
         {
-          Array.from({length: items.paragraph}, (item, index) => <ParagraphResult index={index + 1} type='paragraph' />)
+          Array.from({length: items.paragraph}, (item, index) => <ParagraphResult key={index + 1} type='paragraph' />)
         }
       </Box>
     </Box>
