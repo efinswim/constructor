@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   elements: [],
+  activeElement: '',
 };
 
 const constructorSlice = createSlice({
@@ -46,11 +47,11 @@ const constructorSlice = createSlice({
     },
     copyElement(state, action) {
       const id = action.payload;
-      const copied = state.elements.find(item => item.id === id)
+      const copied = state.elements.find((item) => item.id === id);
       state.elements.push({
         ...copied,
         id: new Date().getTime(),
-      })
+      });
     },
     changeValueElement(state, action) {
       const id = action.payload.id;
@@ -65,25 +66,35 @@ const constructorSlice = createSlice({
     },
     moveUp(state, action) {
       const id = action.payload;
-      const fromIndex = state.elements.findIndex(item => item.id === id);
-      const toIndex = fromIndex - 1
+      const fromIndex = state.elements.findIndex((item) => item.id === id);
+      const toIndex = fromIndex - 1;
       if (toIndex >= 0) {
-        const element = state.elements.splice(fromIndex, 1)[0]
+        const element = state.elements.splice(fromIndex, 1)[0];
         state.elements.splice(toIndex, 0, element);
       }
     },
     moveDown(state, action) {
       const id = action.payload;
-      const fromIndex = state.elements.findIndex(item => item.id === id);
+      const fromIndex = state.elements.findIndex((item) => item.id === id);
       const element = state.elements[fromIndex];
-      const toIndex = fromIndex + 1
-        state.elements.splice(fromIndex, 1);
-        state.elements.splice(toIndex, 0, element);
-    }
+      const toIndex = fromIndex + 1;
+      state.elements.splice(fromIndex, 1);
+      state.elements.splice(toIndex, 0, element);
+    },
+    setActiveElement(state, action) {
+      state.activeElement = action.payload;
+    },
   },
 });
 
-export const { addNewElement, removeElement, copyElement, changeValueElement, moveUp, moveDown } =
-  constructorSlice.actions;
+export const {
+  addNewElement,
+  removeElement,
+  copyElement,
+  changeValueElement,
+  moveUp,
+  moveDown,
+  setActiveElement,
+} = constructorSlice.actions;
 
 export default constructorSlice.reducer;
