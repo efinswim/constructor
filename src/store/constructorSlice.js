@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   elements: [],
-  activeElement: '',
 };
+
+const findItemByIndex = (state, action) => state.elements.findIndex((item) => item.id === action.payload);
 
 const constructorSlice = createSlice({
   name: 'constructorTools',
@@ -65,8 +66,7 @@ const constructorSlice = createSlice({
       };
     },
     moveUp(state, action) {
-      const id = action.payload;
-      const fromIndex = state.elements.findIndex((item) => item.id === id);
+      const fromIndex = findItemByIndex(state, action)
       const toIndex = fromIndex - 1;
       if (toIndex >= 0) {
         const element = state.elements.splice(fromIndex, 1)[0];
@@ -74,16 +74,13 @@ const constructorSlice = createSlice({
       }
     },
     moveDown(state, action) {
-      const id = action.payload;
-      const fromIndex = state.elements.findIndex((item) => item.id === id);
+
+      const fromIndex = findItemByIndex(state, action)
       const element = state.elements[fromIndex];
       const toIndex = fromIndex + 1;
       state.elements.splice(fromIndex, 1);
       state.elements.splice(toIndex, 0, element);
-    },
-    setActiveElement(state, action) {
-      state.activeElement = action.payload;
-    },
+    }
   },
 });
 
