@@ -8,8 +8,7 @@ function ConstructorContentInput({ id, type, value }) {
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
-    dispatch(changeValueElement({ value: event.target.value, id: id }));
-    console.log('dispatch')
+    dispatch(changeValueElement({ value: event.target.value, id: id, type: type }));
   };
 
   return (

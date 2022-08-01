@@ -5,7 +5,7 @@ import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { Box, IconButton } from '@mui/material';
 
-function ConstructorControlPanel({ onClickCopy, onClickRemove }) {
+function ConstructorControlPanel({ onClickCopy, onClickRemove, onClicMoveUp, onClickMoveDown }) {
   return (
     <Box sx={{ position: 'relative' }}>
       <Box
@@ -16,10 +16,10 @@ function ConstructorControlPanel({ onClickCopy, onClickRemove }) {
           borderRadius: '10px',
           margin: '5px',
         }}>
-        <IconButton>
+        <IconButton onClick={onClicMoveUp}>
           <NorthRoundedIcon sx={{ color: 'white' }} />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={onClickMoveDown}>
           <SouthRoundedIcon sx={{ color: 'white' }} />
         </IconButton>
       </Box>

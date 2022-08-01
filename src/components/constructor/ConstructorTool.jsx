@@ -9,19 +9,24 @@ import ImageRoundedIcon from '@mui/icons-material/ImageRounded';
 import ViewHeadlineRoundedIcon from '@mui/icons-material/ViewHeadlineRounded';
 
 import { useDispatch } from 'react-redux';
-import { copyElement, removeElement } from '../../store/constructorSlice';
+import { copyElement, removeElement, moveUp, moveDown } from '../../store/constructorSlice';
 
 function ConstructorTool({ id, type, value }) {
   const dispatch = useDispatch();
 
-  const handleCopyElement = () => dispatch(copyElement(type));
-  const handleDeleteElement = () => dispatch(removeElement(type));
+  const handleCopyElement = () => dispatch(copyElement(id));
+  const handleDeleteElement = () => dispatch(removeElement(id));
+  const handleMoveUp = () => dispatch(moveUp(id));
+  const handleMoveDown = () => dispatch(moveDown(id));
 
   return (
     <Box sx={{ margin: '10px' }}>
       <ConstructorControlPanel
+        id={id}
         onClickCopy={handleCopyElement}
         onClickRemove={handleDeleteElement}
+        onClicMoveUp={handleMoveUp}
+        onClickMoveDown={handleMoveDown}
       />
       <Box
         sx={{

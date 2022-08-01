@@ -30,19 +30,19 @@ function ResultBar() {
   const items = useSelector((state) => state.constructorTools);
   const results = items.elements.map((item, index) => {
     if (item.type === 'image') {
-      return <ImageResult key={item.id} imgSrc={item.src} type={item.type} />;
+      return <ImageResult key={item.id + 1} imgSrc={item.value} type={item.type} />;
     }
 
     if (item.type === 'button') {
-      return <ButtonResult key={item.id} value={item.value} type={item.type} />;
+      return <ButtonResult key={item.id + 1} value={item.value} type={item.type} />;
     }
 
     if (item.type === 'headline') {
-      return <HeadlineResult key={item.id} value={item.value} type={item.type} />;
+      return <HeadlineResult key={item.id + 1} value={item.value} type={item.type} />;
     }
 
     if (item.type === 'paragraph') {
-      return <ParagraphResult key={item.id} value={item.value} type={item.type} />;
+      return <ParagraphResult key={item.id + 1} value={item.value} type={item.type} />;
     }
   });
 
