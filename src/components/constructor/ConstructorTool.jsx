@@ -11,7 +11,7 @@ import ViewHeadlineRoundedIcon from '@mui/icons-material/ViewHeadlineRounded';
 import { useDispatch } from 'react-redux';
 import { copyElement, removeElement } from '../../store/constructorSlice';
 
-function ConstructorTool({ type }) {
+function ConstructorTool({ id, type, value }) {
   const dispatch = useDispatch();
 
   const handleCopyElement = () => dispatch(copyElement(type));
@@ -19,7 +19,10 @@ function ConstructorTool({ type }) {
 
   return (
     <Box sx={{ margin: '10px' }}>
-      <ConstructorControlPanel onClickCopy={handleCopyElement} onClickRemove={handleDeleteElement} />
+      <ConstructorControlPanel
+        onClickCopy={handleCopyElement}
+        onClickRemove={handleDeleteElement}
+      />
       <Box
         sx={{
           width: '560px',
@@ -36,7 +39,7 @@ function ConstructorTool({ type }) {
         {type === 'paragraph' && <ShortTextRoundedIcon sx={{ fontSize: '45px' }} />}
         {type === 'headline' && <ViewHeadlineRoundedIcon sx={{ fontSize: '45px' }} />}
         <Typography component="p">{type}</Typography>
-        <ConstructorContentInput />
+        <ConstructorContentInput id={id} type={type} value={value} />
       </Box>
     </Box>
   );

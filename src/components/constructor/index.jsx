@@ -6,31 +6,20 @@ import ConstructorTool from './ConstructorTool';
 import { useSelector } from 'react-redux';
 
 function Constructor() {
-  const items = useSelector(state => state.constructorTools)
+  const items = useSelector((state) => state.constructorTools);
 
   return (
     <Box
       flex={3}
       p={2}
       sx={{
-        // height: '660px',
-        // bgcolor: '#F5F5FC',
         display: 'flex',
         flexDirection: 'column',
         margin: '10px',
       }}>
-        {
-          Array.from({length: items.button}, (item, index) => <ConstructorTool key={index + 1} type='button' />)
-        }
-        {
-          Array.from({length: items.headline}, (item, index) => <ConstructorTool key={index + 1} type='headline' />)
-        }
-        {
-          Array.from({length: items.image}, (item, index) => <ConstructorTool key={index + 1} type='image' />)
-        }
-        {
-          Array.from({length: items.paragraph}, (item, index) => <ConstructorTool key={index + 1} type='paragraph' />)
-        }
+      {items.elements.map((item, index) => (
+        <ConstructorTool key={item.id + index} id={item.id} type={item.type} value={item.value} />
+      ))}
     </Box>
   );
 }

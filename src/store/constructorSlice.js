@@ -1,10 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  button: 0,
-  headline: 0,
-  image: 0,
-  paragraph: 0,
+  elements: [],
 };
 
 const constructorSlice = createSlice({
@@ -13,61 +10,52 @@ const constructorSlice = createSlice({
   reducers: {
     addNewElement(state, action) {
       if (action.payload === 'button') {
-        state.button++;
+        state.elements.push({
+          type: 'button',
+          value: 'Button',
+          id: new Date().getTime(),
+        });
       }
       if (action.payload === 'headline') {
-        state.headline++;
+        state.elements.push({
+          type: 'headline',
+          value: 'Headline Headline',
+          id: new Date().getTime(),
+        });
       }
       if (action.payload === 'image') {
-        state.image++;
+        state.elements.push({
+          type: 'image',
+          value: '',
+          src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/1200px-Google_Chrome_icon_%28February_2022%29.svg.png',
+          id: new Date().getTime(),
+        });
       }
       if (action.payload === 'paragraph') {
-        state.paragraph++;
+        state.elements.push({
+          type: 'paragraph',
+          value: 'Paragraph Paragraph',
+          id: new Date().getTime(),
+        });
       }
     },
-    removeElement(state, action) {
-      if (action.payload === 'button') {
-        if (state.button === 0) {
-          state.button = 0;
-        }
-        state.button--;
-      }
-      if (action.payload === 'headline') {
-        if (state.headline === 0) {
-          state.headline = 0;
-        }
-        state.headline--;
-      }
-      if (action.payload === 'image') {
-        if (state.image === 0) {
-          state.image = 0;
-        }
-        state.image--;
-      }
-      if (action.payload === 'paragraph') {
-        if (state.paragraph) {
-          state.paragraph = 0;
-        }
-        state.paragraph--;
-      }
-    },
-    copyElement(state, action) {
-      if (action.payload === 'button') {
-        state.button++;
-      }
-      if (action.payload === 'headline') {
-        state.headline++;
-      }
-      if (action.payload === 'image') {
-        state.image++;
-      }
-      if (action.payload === 'paragraph') {
-        state.paragraph++;
-      }
+    removeElement(state, action) {},
+    copyElement(state, action) {},
+    changeValueElement(state, action) {
+      const id = action.payload.id;
+      const value = action.payload.value;
+      const element = state.elements.findIndex((item) => item.id === id);
+      state.elements[element] = {
+        type: element.type,
+        value: value,
+        id: element.id,
+      };
+      console.log('element', element);
     },
   },
 });
 
-export const { addNewElement, removeElement, copyElement } = constructorSlice.actions;
+export const { addNewElement, removeElement, copyElement, changeValueElement } =
+  constructorSlice.actions;
 
 export default constructorSlice.reducer;

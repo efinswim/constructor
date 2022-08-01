@@ -1,54 +1,55 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const ParagraphResult = () => {
+const ParagraphResult = ({ value, type }) => {
   return (
     <Typography variant="subtitle1" component="p">
-      h1. Heading
+      {value}
     </Typography>
   );
 };
 
-const HeadlineResult = () => {
+const HeadlineResult = ({ value, type }) => {
   return (
     <Typography variant="h2" component="h2">
-      h2. Heading
+      {value}
     </Typography>
   );
 };
 
-const ButtonResult = () => {
-  return <Button variant="contained">Contained</Button>;
+const ButtonResult = ({ value, type }) => {
+  return <Button variant="contained">{value}</Button>;
 };
 
-const ImageResult = () => {
-  return (
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Google_Images_2015_logo.svg/640px-Google_Images_2015_logo.svg.png"
-      alt=""
-    />
-  );
+const ImageResult = ({ imgSrc }) => {
+  return <img src={imgSrc} alt="" />;
 };
 
 function ResultBar() {
-  const items = useSelector(state => state.constructorTools)
+  const items = useSelector((state) => state.constructorTools);
+  const results = items.elements.map((item, index) => {
+    if (item.type === 'image') {
+      return <ImageResult key={item.id} imgSrc={item.src} type={item.type} />;
+    }
+
+    if (item.type === 'button') {
+      return <ButtonResult key={item.id} value={item.value} type={item.type} />;
+    }
+
+    if (item.type === 'headline') {
+      return <HeadlineResult key={item.id} value={item.value} type={item.type} />;
+    }
+
+    if (item.type === 'paragraph') {
+      return <ParagraphResult key={item.id} value={item.value} type={item.type} />;
+    }
+  });
 
   return (
     <Box flex={3} p={2}>
-      <Box width={300} sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-        {
-          Array.from({length: items.button}, (item, index) => <ButtonResult key={index + 1} type='button' />)
-        }
-        {
-          Array.from({length: items.headline}, (item, index) => <HeadlineResult key={index + 1} type='headline' />)
-        }
-        {
-          Array.from({length: items.image}, (item, index) => <ImageResult key={index + 1} type='image' />)
-        }
-        {
-          Array.from({length: items.paragraph}, (item, index) => <ParagraphResult key={index + 1} type='paragraph' />)
-        }
+      <Box width={300} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+        {results}
       </Box>
     </Box>
   );
