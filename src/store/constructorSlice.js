@@ -67,15 +67,18 @@ const constructorSlice = createSlice({
       const id = action.payload;
       const fromIndex = state.elements.findIndex(item => item.id === id);
       const toIndex = fromIndex - 1
-      const element = state.elements.splice(fromIndex, 1)[0]
-      state.elements.splice(toIndex, 0, element);
+      if (toIndex >= 0) {
+        const element = state.elements.splice(fromIndex, 1)[0]
+        state.elements.splice(toIndex, 0, element);
+      }
     },
     moveDown(state, action) {
       const id = action.payload;
       const fromIndex = state.elements.findIndex(item => item.id === id);
+      const element = state.elements[fromIndex];
       const toIndex = fromIndex + 1
-      const element = state.elements.splice(fromIndex, 1)[0]
-      state.elements.splice(toIndex, 0, element);
+        state.elements.splice(fromIndex, 1);
+        state.elements.splice(toIndex, 0, element);
     }
   },
 });
